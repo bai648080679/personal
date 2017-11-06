@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人网站</title>
+		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+		<link rel="stylesheet" type="text/css" href="css/skill.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<style>
+			.menu_content {
+					min-width: 100px;
+					width: 40%;
+					height: 100vh;
+					background-color:#f2f2f2;
+					color: #fff;
+					z-index: 200;
+					position: absolute;
+					top: 0;
+					right: -200%;
+					padding: 10% 0 0 0;
+					-webkit-transform: skew(-15deg);
+					-moz-transform: skew(-15deg);
+					-ms-transform: skew(-15deg);
+					-o-transform: skew(-15deg);
+					transform: skew(-15deg);
+				}
+				
+				.show:after{
+					content: "";
+					display: block;
+					width: 200%;
+					height: 100%;
+					background-color:rgba(0,0,0,.5);
+					position: absolute;
+					top: 0;
+					left:-200%;
+				}
+				.menu_content ul{
+					padding-left: 10px;
+					padding-right: 30%;
+					
+					-webkit-transform: skew(15deg);
+					-moz-transform: skew(15deg);
+					-ms-transform: skew(15deg);
+					-o-transform: skew(15deg);
+					transform: skew(15deg);
+				}
+			.menu_content ul li{
+				line-height: 80px;
+				text-align: right;
+				font-size: 20px;
+			}
+			.menu_content ul li a{
+				width: 80px;
+				display: block;
+				color: #999;
+				text-decoration: none;
+				background-color:transparent;
+				position: relative;
+				z-index: 30;
+				transition: all 1s;
+			}
+			.menu_content ul li:nth-of-type(2) a,.menu_content ul li:nth-of-type(5) a{
+				width: 90px;
+			}
+			.menu_content ul li:nth-of-type(3) a,.menu_content ul li:nth-of-type(4) a{
+				width: 100px;
+			}
+			.menu_content ul li a:after{
+				content: "";
+				display: block;
+				width: 100%;
+				height: 100%;
+				border-top: 1px solid #00C2FF;
+				position: absolute;
+				top: 40px;
+				left: 17px;
+				transform-origin: 50% 0%;
+				-webkit-transform: scale(0);
+				-moz-transform: scale(0);
+				-ms-transform: scale(0);
+				-o-transform: scale(0);
+				transform: scale(0);
+				transition: all 1s;
+			}
+			.menu_content ul li:nth-of-type(3) a:after,.menu_content ul li:nth-of-type(4) a:after{
+				left: 8px;
+			}
+			.menu_content ul li a:hover,.menu_content ul li.active a{
+				color: #00C2FF;
+			}
+			.menu_content ul li a:hover:after,.menu_content ul li.active a:after{
+				-webkit-transform: scale(1);
+				-moz-transform: scale(1);
+				-ms-transform: scale(1);
+				-o-transform: scale(1);
+				transform: scale(1);
+			}
+			.menu-button {
+					position: absolute;
+					top:50%; right:3%;
+		
+					padding: 15px;
+		
+					cursor: pointer;
+		
+					-webkit-transition: .3s;
+					transition: .3s;
+		            background-color:rgba(0,0,0,.2);
+					border-radius: 50%;
+				    border-bottom: 3px solid #333;
+		
+					/*margin: 14px;
+					border-radius: 5px;*/
+				}
+				.menu-button .bar:nth-of-type(1) {
+					margin-top: 0px;
+				}
+				.menu-button .bar:nth-of-type(3) {
+					margin-bottom: 0px;
+				}
+		
+				.bar {
+					position: relative;
+					display: block;
+		
+					width: 35px;
+					height: 5px;
+		
+					margin: 5px auto;
+					background-color: #fff;
+		
+					border-radius: 10px;
+		
+					-webkit-transition: .3s;
+					transition: .3s;
+				}
+				.menu-button:hover .bar:nth-of-type(1) {
+			-webkit-transform: translateY(1.5px) rotate(-4.5deg);
+			-ms-transform: translateY(1.5px) rotate(-4.5deg);
+			transform: translateY(1.5px) rotate(-4.5deg);
+		}
+		.menu-button:hover .bar:nth-of-type(2) {
+			opacity: .9;
+		}
+		.menu-button:hover .bar:nth-of-type(3) {
+			-webkit-transform: translateY(-1.5px) rotate(4.5deg);
+			-ms-transform: translateY(-1.5px) rotate(4.5deg);
+			transform: translateY(-1.5px) rotate(4.5deg);
+		}
+
+		.cross .bar:nth-of-type(1) {
+			-webkit-transform: translateY(10px) rotate(-45deg);
+			-ms-transform: translateY(10px) rotate(-45deg);
+			transform: translateY(10px) rotate(-45deg);
+		}
+		.cross .bar:nth-of-type(2) {
+			opacity: 0;
+		}
+		.cross .bar:nth-of-type(3) {
+			-webkit-transform: translateY(-10px) rotate(45deg);
+			-ms-transform: translateY(-10px) rotate(45deg);
+			transform: translateY(-10px) rotate(45deg);
+		}
+		.cross:hover .bar:nth-of-type(1) {
+			-webkit-transform: translateY(12.5px) rotate(-40.5deg);
+			-ms-transform: translateY(12.5px) rotate(-40.5deg);
+			transform: translateY(12.5px) rotate(-40.5deg);
+		}
+		.cross:hover .bar:nth-of-type(2) {
+			opacity: .1;
+		}
+		.cross:hover .bar:nth-of-type(3) {
+			-webkit-transform: translateY(-12.5px) rotate(40.5deg);
+			-ms-transform: translateY(-12.5px) rotate(40.5deg);
+			transform: translateY(-12.5px) rotate(40.5deg);
+		}
+		</style>
+	</head>
+	<body data-spy="scroll" data-target=".navbar">
+		<!--loading star-->
+		<div class="loadingTOP wow slideOutUp" data-wow-delay=".5s"></div>
+		<div class="loadingMiddle wow middle"></div>
+		<div class="loadingButtom wow slideOutDown" data-wow-delay=".5s"></div>
+		<!--loading end-->
+		<!--nav star-->
+        <div class="navbar navbar-fixed-top"  data-spy = "affix"  id="navbar">
+        	<div class="logo">
+        		<h2><span></span></h2>
+        	</div>
+        	<button class="menu-button">
+        		<div class="bar"></div>
+        		<div class="bar"></div>
+        		<div class="bar"></div>
+        	</button>
+        </div>
+        <nav class="menu_content">
+				<ul class="pull-right" id="menu">
+					<li data-menuanchor="page1" class="active"><a href="#page1">首页</a></li>
+					<li  data-menuanchor="page2" ><a href="#page2">关于我</a></li>
+					<li  data-menuanchor="page3" ><a href="#page3">专业技能</a></li>
+					<li data-menuanchor="page4" ><a href="#page4">项目经验</a></li>
+					<li data-menuanchor="page5" ><a href="#page5">联系我</a></li>
+				</ul>
+		</nav>
+		<!--nav end-->
+		<div class="container-fluid" id="dowebok">
+			<section class="home section" id="home">
+				<div class="popup-container">
+		             <div class="img-flex"></div>
+	            </div>
+				<div class="box">
+					<div class="panel-default" id="panel-default">
+					<h2><img src="img/xing_02.png" /></h2>
+					<h3>Life doesn't get easier,you just  get stronger</h3>
+					<p>我叫白琨</p>
+					<p>一名前端开发工程师</p>
+					<p>17600825103@163.com</p>
+				</div>
+				</div>
+			</section>
+			<section class="about_me section" id="about_me">
+					<ul class="clearfix me">
+						<li>
+							<i></i>
+						    <div class="list_down">北京</div>
+						</li>
+						<li>
+							<i></i>
+							<div class="list_down">22岁</div>
+						</li>
+						<li>
+							<i></i>
+							<div class="list_down">大专</div>
+						</li>
+						<li>
+							<i></i>
+						    <div class="list_down">离职</div>
+						</li>
+					</ul>
+				<article class="introduce">
+					<p>二年全职前端开发经验</p>
+					<p>熟悉自动化,模块化开发之道</p>
+					<p>高效的自学能力,能独立分析解决问题</p>
+					<p>强烈的自我驱动力,代码强迫症患者</p>
+				</article>
+			</section>
+			<div class="Skill section" id="Skill">
+				<div id="content">
+					<div class="legend">
+						<h1>Skill:</h1>
+						<div class="skills">
+							<ul>
+								<li class="jq">jQuery</li>
+								<li class="css">CSS</li>
+								<li class="html">HTML</li>
+								<li class="php">JavaScript</li>
+								<li class="sql">bootstrap</li>
+							</ul>
+						</div>
+					</div>
+					<div id="diagram"></div>
+				</div>
+				<div class="get">
+					<div class="arc">
+						<span class="text">jQuery</span>
+						<input type="hidden" class="percent" value="95" />
+						<input type="hidden" class="color" value="#97BE0D" />
+					</div>
+					<div class="arc">
+						<span class="text">CSS</span>
+						<input type="hidden" class="percent" value="90" />
+						<input type="hidden" class="color" value="#D84F5F" />
+					</div>
+					<div class="arc">
+						<span class="text">HTML</span>
+						<input type="hidden" class="percent" value="95" />
+						<input type="hidden" class="color" value="#88B8E6" />
+					</div>
+					<div class="arc">
+						<span class="text">JavaScript</span>
+						<input type="hidden" class="percent" value="53" />
+						<input type="hidden" class="color" value="#BEDBE9" />
+					</div>
+					<div class="arc">
+						<span class="text">bootstrap</span>
+						<input type="hidden" class="percent" value="95" />
+						<input type="hidden" class="color" value="#EDEBEE" />
+					</div>
+				</div>
+			</div>
+			<div class="Progect section" id="Progect">
+					<div id="banner" class="content carousel slide">
+						<ul class="carousel-inner pro_slider clearfix">
+							<li class="item active">
+								<section><a href="https://bai648080679.github.io/keyang/index/"><img src="img/pic5.png" alt="" /></a></section>
+								<article>
+									<p><b>项目名称：</b>科洋科技</p>
+									<p><b>技术实现：</b>HTML5、CSS3\jQuery</p>
+									<p><b>项目描述：</b>使用css3实现导航下拉菜单动画效果;模块化排版</p>
+									<p><b>个人职责：</b><br />根据产品需求分析并给出最优的网页前端结构解决方案并完成<br />效果实现<br />利用css+html等将页面实现，高度还原设计图<br />用js、jQuery对页面原型进行布局搭建，并进行特效制作</p>
+								</article>
+							</li>
+							<li class="item">
+								<section><a href="https://bai648080679.github.io/demo/"><img src="img/pic9.png" alt="" /></a></section>
+								<article>
+									<p><b>项目名称：</b>景秀教育</p>
+									<p><b>技术实现：</b>HTML5、CSS3\jQuery\媒体查询</p>
+									<p><b>项目描述：</b><br />H5原生态响应式开发<br />运用到h5语义化标签及css3动画<br />在师资力量模块中模拟弹出框效果</p>
+									<p><b>个人职责：</b><br />与设计沟通确定网页风格及用户体验后期在各种移动端的显示，<br />设计跟着开发走，最大化的实现页面的功能与美感<br />与后台配合确定接口及数据交互</p>
+								</article>
+							</li>
+							<li class="item">
+								<section><a href="https://bai648080679.github.io/yichun/home/home.html"><img src="img/xbk.jpg" alt="" /></a></section>
+								<article>
+									<p><b>项目名称：</b>星巴克</p>
+									<p><b>技术实现：</b>HTML5 CSS jQuery</p>
+									<p><b>项目描述：</b>使用jQuery实现导航栏动画效果及导航的下拉菜单;<br />模块化排版</p>
+									<p><b>项目收获：</b><br />通过做大型网站的制作使自己的技能得到综合的提升<br />及练习，再往后的工作中更加熟练</p>
+								</article>
+							</li>
+							<li class="item">
+								<section><a href="https://bai648080679.github.io/shopping/"><img src="img/dian1.jpg" alt="" /></a></section>
+								<article>
+									<p><b>项目名称：</b>电商</p>
+									<p><b>技术实现：</b>HTML5,CSS3,Jquery</p>
+									<p><b>项目描述：</b>该项目中的交互效果较多，如：图片放大、<br />衣服换色、商品评分、左侧点小图变大图等效果</p>
+									<p><b>项目收获：</b><br />对关于电子商务网站的购买交互及用户交互效果的制作<br />得到大大的提升。<br />为在以后的工作中遇到同种类的网站有一定的帮助</p>
+								</article>
+							</li>
+						</ul>
+						<ul class="carousel-indicators">
+            		<li data-target = "#banner" data-slide-to = "0" class="active"  ></li>
+            		<li data-target = "#banner" data-slide-to = "1" ></li>
+            		<li data-target = "#banner" data-slide-to = "2" ></li>
+            		<li data-target = "#banner" data-slide-to = "3" ></li>
+            	</ul>
+            	<a href="#banner" data-slide = "prev" class="carousel-control left"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            	<a href="#banner" data-slide = "next" class="carousel-control right"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			</div>
+			</div>
+			<footer class="Contact_me section" id="Contact_me">
+				<div class="for slideInDown">
+					<h2><span>CONTACT</span>FOR ME</h2>
+					<ul class="ul_1">
+						<li>灵感</li>
+						<li>代码</li>
+						<li>梦想</li>
+						<li>未来</li>
+					</ul>
+					<article>
+						学习是一个充实愉悦的过程 <br /> 喜欢尝试，期待新鲜事物 <br /> 前端即兴趣，兴趣即未来 <br /> 行路有良友，便是捷径 <br /> 期待有机会与您共事！
+						<br />
+					</article>
+					<ul class="ul_2">
+						<li>
+							<a href="https://github.com/bai648080679"><i class="fa fa-github"></i></a>
+							<div class="tools">Github</div>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-qq"></i></a>
+							<div class="tools img_p"><img src="img/qq_01.jpg" width="200" height="200" /></div>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-wechat"></i></a>
+							<div class="tools img_p"><img src="img/weixin.jpg" width="200" height="200" /></div>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-weibo"></i></a>
+							<div class="tools">Weibo</div>
+						</li>
+						<li>
+							<a href="#">知</a>
+							<div class="tools">Zhihu</div>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-github"></i></a>
+							<div class="tools">17600825103@163.com</div>
+						</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript" src="js/wow.min.js"></script>
+	<script src="js/skill.js"></script>
+	<script src="js/fragment.js"></script>
+	<script src="js/direction.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+			new WOW().init();
+		};
+	</script>
+	<script>
+		$(function() {
+			$('#dowebok').fullpage({
+				verticalCentered: false,
+				'navigation': true,
+				anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+				menu: '#menu',
+			});
+		
+		});
+	</script>
+	<script>
+		$(function(){
+			var i=0;
+			$(".menu-button").click(ve = function(){
+			    if(i==0){
+			    	$(this).addClass("cross");
+			    	$(this).parent().next().animate({right:"-8%"},500,function(){
+			    		$(".menu_content").addClass("show");
+			    	});
+			    	i++;
+			    }else if(i==1){
+			    	$(this).removeClass("cross");
+			    	$(this).parent().next().removeClass("show").animate({right:"-200%"},500);
+			    	i--;
+			    };
+			});
+			$(".menu_content ul li").click(function(){
+				$(".menu_content").removeClass("show").animate({right:"-200%"},500);
+				$(".menu-button").removeClass("cross");
+				i--;
+			});
+		});
+	</script>
+</html>
